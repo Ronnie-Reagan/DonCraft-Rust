@@ -1,6 +1,7 @@
 :root {
   --bg: #0f1115;
   --panel: #161a22;
+  --panel-darker: #1b1f29;
   --text: #d6d9e0;
   --muted: #9aa0aa;
   --accent: #c97a3a;
@@ -42,6 +43,14 @@ nav a:hover {
   color: var(--accent);
 }
 
+.nav-right {
+  margin-left: auto;
+}
+
+.nav-right:hover {
+  text-decoration: underline;
+}
+
 main {
   max-width: 900px;
   margin: auto;
@@ -80,6 +89,13 @@ li {
 
 .card {
   background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 6px;
+}
+
+.inner-card {
+  background: var(--panel-darker);
   border: 1px solid var(--border);
   padding: 1.5rem;
   border-radius: 6px;
