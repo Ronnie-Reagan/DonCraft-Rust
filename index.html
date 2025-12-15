@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DonCraft Rust Server</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -10,49 +11,51 @@
 <body>
 
     <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="rules.html">Rules</a>
-            <a href="world.html">World</a>
-            <a href="help.html">Help & FAQ</a>
-            <a href="https://discord.gg/Kd5EGGgNa4" class="nav-right">Join the Discord</a>
-        </nav>
+        <div class="container nav-row">
+            <a class="brand" href="index.html">DonCraft <span>Rust</span></a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="rules.html">Rules</a>
+                <a href="world.html">World</a>
+                <a href="help.html">Help</a>
+            </nav>
+            <a href="https://discord.gg/Kd5EGGgNa4" class="btn nav-right" target="_blank" rel="noopener noreferrer">Join the Discord</a>
+        </div>
     </header>
 
-    <main>
-        <section class="card">
-            <h1>Welcome to DonCraft Rust Server</h1>
-            <p>Your community-focused vanilla Rust experience awaits!</p>
-            <section class="inner-card">
-                <h1>Community-Focused Vanilla Rust</h1>
-                <p>
-                    A long-term Rust server focused on building a shared world instead of endless war.
-                    No decay. No raiding. PVE-spirited social order.
-                </p>
-            </section>
-
-            <section class="inner-card">
-                <h2>Server Highlights</h2>
-                <ul>
-                    <li>No base decay (trying to keep upkeep enabled for auto-repairs)</li>
-                    <li>No raiding</li>
-                    <li>Vanilla+ gameplay (no game-changing plugins; we only do things like adding a recycler at the top
-                        of dome)</li>
-                    <li>Property defense allowed</li>
-                    <li>Toxicity and griefing removed early</li>
-                    <li>Chat-Command for pasting images on signs</li>
-                </ul>
-            </section>
+    <main class="container">
+        <section class="card hero">
+            <div>
+                <p class="eyebrow">Community-first Vanilla+</p>
+                <h1>Welcome to DonCraft</h1>
+                <p>Your community-focused Rust experience: build longer, cooperate more, and keep the world alive between wipes.</p>
+                <div class="cta-row">
+                    <a class="btn primary" href="help.html#connect">Quick connect info</a>
+                    <a class="btn ghost" href="rules.html">Read the rules</a>
+                </div>
+            </div>
+            <div>
+                <img src="assets/img/sunset.png" alt="Rust sunset">
+            </div>
         </section>
-        <section>
-            <img src="assets/img/sunset.png" alt="Rust sunset">
+
+        <section class="card">
+            <h2>Server Highlights</h2>
+            <ul class="feature-list">
+                <li>No base decay (upkeep stays on for auto-repairs)</li>
+                <li>No raiding; property defense allowed</li>
+                <li>Vanilla+ gameplay with light QoL tweaks (ex: recycler at Dome)</li>
+                <li>Toxicity and griefing removed early to keep the vibe good</li>
+                <li>Chat command for pasting images on signs</li>
+                <li>Social order encouraged by players, not heavy-handed plugins</li>
+            </ul>
         </section>
     </main>
 
 
     <footer>
-        &copy; Copyright 2025-
+        &copy; Copyright 2025 -
         <script>document.write(new Date().getFullYear());</script> DonCraft
     </footer>
 

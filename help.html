@@ -3,88 +3,119 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DonCraft Help</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<script>
-    function copyJoin() {
-        const text = document.getElementById("joinCmd").innerText;
-        navigator.clipboard.writeText(text);
-        document.getElementById("hint").innerText = "Copied!";
-        arguments.callee.caller && setTimeout(() => {
-            document.getElementById("hint").innerText = "Click to copy";
-        }, 2000);
-    }
-</script>
-
 <body>
     <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="rules.html">Rules</a>
-            <a href="world.html">World</a>
-            <a href="help.html">Help & FAQ</a>
-            <a href="https://discord.gg/Kd5EGGgNa4" class="nav-right">Join the Discord</a>
-        </nav>
+        <div class="container nav-row">
+            <a class="brand" href="index.html">DonCraft <span>Rust</span></a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="rules.html">Rules</a>
+                <a href="world.html">World</a>
+                <a href="help.html">Help</a>
+            </nav>
+            <a href="https://discord.gg/Kd5EGGgNa4" class="btn nav-right" target="_blank" rel="noopener noreferrer">Join the Discord</a>
+        </div>
     </header>
-    <main>
-        <section class="card">
-            <section class="inner-card">
-                <h2>Joining the Server</h2>
-                <p>The server should be listed under the Community tab in-game; search for DonCraft</p>
-                <p>Alternatively, paste this into the Rust F1 console:</p>
-                <div class="card copybox" onclick="copyJoin()">
-                    <code id="joinCmd">client.connect donmusicstream.duckdns.org:28015</code>
-                    <span class="hint" id="hint">Click to copy</span>
-                </div>
-            </section>
-            <section class="inner-card">
+    <main class="container">
+        <section class="card" id="connect">
+            <h2>Joining the Server</h2>
+            <p>The server should be listed under the Community tab in-game; search for DonCraft.</p>
+            <p>Alternatively, paste this into the Rust F1 console:</p>
+            <div class="inner-card copybox" id="copyJoin" role="button" tabindex="0" aria-label="Copy Rust connect command">
+                <code id="joinCmd">client.connect donmusicstream.duckdns.org:28015</code>
+                <span class="hint" id="hint" aria-live="polite">Click to copy</span>
+            </div>
+        </section>
+
+        <section class="grid two">
+            <section class="card">
                 <h2>Discord</h2>
-                </p>
                 <p>
-                    Join the <a href="https://discord.gg/Kd5EGGgNa4" class="link" target="_blank">Discord</a> for updates, community
+                    Join the <a href="https://discord.gg/Kd5EGGgNa4" target="_blank" rel="noopener noreferrer">Discord</a> for updates, community
                     events, and support.
                 </p>
                 <p>
-
                     We also use Discord for player reports and admin communication. Not joining may limit your ability to
                     report issues or receive important announcements.
                 </p>
                 <p>
-
-                    The developers also frequently discuss potential changes and gather player feedback on Discord.
+                    The team frequently discusses potential changes and gathers player feedback there.
                 </p>
-
             </section>
 
-            <section class="inner-card">
+            <section class="card">
                 <h2>Who This Is For</h2>
-                <l>
-                    Builders, long-term players, and people who want Rust without constant hostility.
-                </l>
+                <p>Builders, long-term players, and people who want Rust without constant hostility.</p>
                 <h2>FAQ</h2>
-                <h3>Is raiding allowed?</h3>
-                <l>No. Raiding is not allowed on this server.</l>
-                <h3>Is PvP allowed?</h3>
-                <l>Yes, but the focus is on community building and cooperation rather than constant warfare.</l>
-                <h3>Are there any plugins?</h3>
-                <l>The server is mostly vanilla with minor quality-of-life plugins. we prefer simple quality-of-life additions</l>
-                <h3>How is griefing handled?</h3>
-                <l>Griefing and toxic behavior are not tolerated. Admins monitor player reports and behavior patterns.
-                </l>
-                <h3>How can I contribute to the community?</h3>
-                <l>Engage positively with other players, help newcomers, and participate in community events.</l>
+                <ul>
+                    <li><strong>Is raiding allowed?</strong> No. Raiding is not allowed on this server.</li>
+                    <li><strong>Is PvP allowed?</strong> Yes, but the focus is on community building and cooperation rather than constant warfare.</li>
+                    <li><strong>Are there any plugins?</strong> Mostly vanilla with minor quality-of-life additions.</li>
+                    <li><strong>How is griefing handled?</strong> Griefing and toxic behavior are not tolerated. Admins monitor player reports and behavior patterns.</li>
+                    <li><strong>How can I contribute?</strong> Engage positively, help newcomers, and participate in community events.</li>
+                </ul>
             </section>
         </section>
     </main>
 
     <footer>
-        &copy; Copyright 2025-
+        &copy; Copyright 2025 -
         <script>document.write(new Date().getFullYear());</script> DonCraft
     </footer>
 
+    <script>
+        (function () {
+            const copyBox = document.getElementById('copyJoin');
+            const joinCmd = document.getElementById('joinCmd');
+            const hint = document.getElementById('hint');
+
+            function setHint(text) {
+                hint.innerText = text;
+            }
+
+            function fallbackCopy() {
+                const range = document.createRange();
+                range.selectNode(joinCmd);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                try {
+                    document.execCommand('copy');
+                    setHint('Copied!');
+                } catch (err) {
+                    setHint('Press Ctrl+C to copy');
+                }
+                selection.removeAllRanges();
+            }
+
+            function copyJoin() {
+                const text = joinCmd.innerText.trim();
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text)
+                        .then(() => setHint('Copied!'))
+                        .catch(() => fallbackCopy());
+                } else {
+                    fallbackCopy();
+                }
+
+                setTimeout(() => setHint('Click to copy'), 2000);
+            }
+
+            copyBox.addEventListener('click', copyJoin);
+            copyBox.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    copyJoin();
+                }
+            });
+        })();
+    </script>
 </body>
 
 </html>
